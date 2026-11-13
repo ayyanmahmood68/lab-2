@@ -1,0 +1,24 @@
+# Laboratory 2 Report: Web Scraping, Feature Engineering, and EDA
+
+## 1. NumPy vs. Python Loop Efficiency
+- **Observation:** NumPy vectorized array operations execute significantly faster (~206x speedup) compared to native Python `for` loops[span_3](start_span)[span_3](end_span)[span_4](start_span)[span_4](end_span)[span_5](start_span)[span_5](end_span).
+- **Justification:** NumPy operations run in optimized, compiled C code with contiguous memory allocation, avoiding Python's interpreter overhead.
+
+## 2. In-Lab Exercises & Analysis
+
+### Exercise 1: HTML Selector Failure Analysis
+- **Finding:** Certain URLs fail or get skipped during scraping if the target website's structural layout changes or if it lacks specific Blogger template tags (`div.post-body.entry-content`)[span_6](start_span)[span_6](end_span)[span_7](start_span)[span_7](end_span)[span_8](start_span)[span_8](end_span).
+- **Resolution:** Implementing length threshold filters (`len(text) > 100`) ensures that empty or poorly parsed blocks do not corrupt the final dataset[span_9](start_span)[span_9](end_span)[span_10](start_span)[span_10](end_span)[span_11](start_span)[span_11](end_span).
+
+### Exercise 3: Critique of Kernel Density Estimation (KDE) on Small Samples
+- **Analysis:** Fitting a continuous Kernel Density Estimation (KDE) curve over a very small sample size ($N=4$) is statistically misleading. Small samples are highly sensitive to bandwidth choices and exhibit massive variance, creating artificial peaks.
+- **Alternative:** Discrete strip plots, rug plots, or empirical summary tables should be used instead of continuous distributions for micro-corpora[span_12](start_span)[span_12](end_span).
+
+### Exercise 4: TF-IDF With vs. Without Stop Words
+- **Without Stop Words (`stop_words=None`):** High-ranking terms consist of grammatical functional words (`and`, `the`, `to`, `for`, `it`, `of`)[span_13](start_span)[span_13](end_span).
+- **With Stop Words Removal (`stop_words='english'`):** Functional words are filtered out, surfacing meaningful domain-specific vocabulary (`content`, `ai`, `tool`, `limewire`, `creators`, `features`)[span_14](start_span)[span_14](end_span)[span_15](start_span)[span_15](end_span)[span_16](start_span)[span_16](end_span).
+
+## 3. Summary of Extracted Features
+- The scraped corpus contains 4 articles with an average token count of ~1427.5[span_17](start_span)[span_17](end_span).
+- The mean sentiment polarity is mildly positive (+0.215) combined with high subjectivity (0.540), confirming that the texts are promotional tech blog articles containing personal author evaluations[span_18](start_span)[span_18](end_span)[span_19](start_span)[span_19](end_span).
+-
